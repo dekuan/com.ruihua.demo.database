@@ -46,7 +46,7 @@ public class RpcClientDataServiceTest
 			);
 		assertThat( getGreetingResponse ).isNotNull();
 		assertThat( getGreetingResponse.getHeader().getCode() ).isEqualTo( EnumRpcCode.RPC_SUCCESSFUL );
-		assertThat( getGreetingResponse.getSuccess() ).isNotNull();
-		assertThat( getGreetingResponse.getSuccess() ).isEqualTo( true );
+		assertThat( getGreetingResponse.getMid() ).isNotNull();
+		assertThat( getGreetingResponse.getMid() ).isNotEmpty();
 	}
 }

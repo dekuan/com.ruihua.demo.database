@@ -13,5 +13,7 @@ services:
         volumes:
             - ./deploy/etc/localtime:/etc/localtime:ro
             - ./deploy/etc/timezone:/etc/timezone:ro
+            - ./deploy/etc/hosts:/etc/hosts:ro
+
 #        environment:
 #            - spring.profiles.active=prod

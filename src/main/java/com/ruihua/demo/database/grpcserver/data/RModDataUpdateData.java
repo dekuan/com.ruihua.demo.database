@@ -45,7 +45,7 @@ public class RModDataUpdateData
 				.setHeader( CommonResponse.newBuilder()
 					.setCode( EnumRpcCode.RPC_SUCCESSFUL )
 					.build() )
-				.setSuccess( null != createResponse )
+				.setMid( createResponse.getBody().getMid() )
 				.build();
 
 			logger.info( "))) successfully, responded {}", oRes );
