@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package ruihua.demo.database.dataService;
+import "ruihua.demo.database.common.proto";
+
+option java_multiple_files = true;
+option java_package = "ruihua.demo.database.dataService";
+
+
+
+
+/**
+ *	updateData
+ */
+message UpdateDataRequest
+{
+}
+message UpdateDataResponse
+{
+	ruihua.demo.database.common.CommonResponse header	=  1;
+	bool success						= 10;
+}
+
+
+
+/**
+ *	Data Services
+ */
+service DataService
+{
+	rpc updateData ( UpdateDataRequest ) returns ( UpdateDataResponse );
+}

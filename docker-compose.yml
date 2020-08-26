@@ -1,0 +1,17 @@
+version: '3'
+services:
+    ruihuaKubeDemoDatabase:                       # Service Name
+        container_name: ruihua-kube-demo-database
+        hostname: ruihua-kube-demo-database
+        build:
+            context: .
+        image: ruihua.kube.demo.database:latest
+        ports:
+            # 指定端口映射，类似 docker run 的 -p 选项，注意使用字符串形式
+            # [local port]:[container port]
+            - "1910:1910"
+        volumes:
+            - ./deploy/etc/localtime:/etc/localtime:ro
+            - ./deploy/etc/timezone:/etc/timezone:ro
+#        environment:
+#            - spring.profiles.active=prod

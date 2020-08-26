@@ -1,0 +1,57 @@
+spring:
+
+    datasource:
+        driverClassName: com.mysql.cj.jdbc.Driver
+        auto-commit: true
+        url: jdbc:mysql://MYSQL_DEV:3306/ruihua?allowPublicKeyRetrieval=true&useSSL=false&useUnicode=true&CharSet=utf8mb4&characterEncoding=utf8&characterSetResults=utf8&autoReconnect=true&autoReconnectForPools=true&rewriteBatchedStatements=true&allowMultiQueries=true&serverTimezone=Asia/Shanghai
+        username: ruihua
+        password: ruihua
+
+        # alibaba druid connections pool and monitor
+        type: com.alibaba.druid.pool.DruidDataSource
+        druid:
+            initial-size: 2
+            min-idle: 5
+            max-active: 10
+            max-wait: 5000
+            validation-query: SELECT 1
+            test-on-borrow: false
+            test-while-idle: true
+            time-between-eviction-runs-millis: 18800
+            web-stat-filter:
+                enabled: true
+                exclusions: js,gif,jpg,png,css,ico,/druid/*
+            stat-view-servlet:
+                enabled: false
+                login-username: root
+                login-password: unset
+
+    jpa:
+        hibernate:
+            ddlAuto: update
+        databasePlatform: org.hibernate.dialect.MySQL5InnoDBDialect
+        showSql: true
+
+
+
+########################################
+# gRpc service
+grpc:
+    enabled: true
+    host: localhost
+    port: 1910
+
+
+########################################
+# TomCat
+server:
+    port: 2900
+
+
+
+########################################
+#   app config
+app:
+    timezone: Asia/Shanghai
+
+

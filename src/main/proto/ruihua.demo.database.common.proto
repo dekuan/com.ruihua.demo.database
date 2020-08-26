@@ -1,0 +1,121 @@
+syntax = "proto3";
+
+package ruihua.demo.database.common;
+
+option java_multiple_files = true;
+option java_package = "ruihua.demo.database.common";
+
+
+
+
+enum EnumConstants
+{
+	CONSTANT_PAGE_UNSET		= 0;
+	CONSTANT_PAGE_NO_DEFAULT	= 1;
+
+	CONSTANT_PAGE_SIZE_DEFAULT	= 20;
+	CONSTANT_PAGE_SIZE_MAX		= 100;
+	CONSTANT_PAGE_SIZE_MIN		= 10;
+}
+
+
+enum EnumRpcCode
+{
+	RPC_SUCCESSFUL				= 0;
+
+	RPC_UNKNOWN				= 10000;
+	RPC_FAILED				= 10001;
+	RPC_EXCEPTIONAL				= 10002;
+	RPC_ILLEGAL_PARAMETERS			= 10003;
+
+	RPC_BAD_REQUEST				= 400;
+	RPC_UNAUTHORIZED			= 401;
+	RPC_PAYMENT_REQUIRED			= 402;
+	RPC_FORBIDDEN				= 403;
+	RPC_NOT_FOUND				= 404;
+	RPC_METHOD_NOT_ALLOWED			= 405;
+	RPC_NOT_ACCEPTABLE			= 406;
+	RPC_PROXY_AUTHENTICATION_REQUIRED	= 407;
+	RPC_REQUEST_TIMEOUT			= 408;
+	RPC_CONFLICT				= 409;
+	RPC_GONE				= 410;
+	RPC_LENGTH_REQUIRED			= 411;
+	RPC_PRECONDITION_FAILED			= 412;
+	RPC_REQUEST_ENTITY_TOO_LARGE		= 413;
+	RPC_REQUEST_URI_TOO_LONG		= 414;
+	RPC_UNSUPPORTED_MEDIA_TYPE		= 415;
+	RPC_REQUESTED_RANGE_NOT_SATISFIABLE	= 416;
+	RPC_EXPECTATION_FAILED			= 417;
+	RPC_UPGRADE_REQUIRED			= 426;
+	RPC_PRECONDITION_REQUIRED		= 428;
+	RPC_TOO_MANY_REQUESTS			= 429;
+	RPC_REQUEST_HEADER_FIELDS_TOO_LARGE	= 431;
+	RPC_UNAVAILABLE_FOR_LEGAL_REASONS	= 451;
+	RPC_CLIENT_CLOSED_REQUEST		= 499;	//	(NGINX)
+
+	RPC_INTERNAL_SERVER_ERROR		= 500;
+	RPC_NOT_IMPLEMENTED			= 501;
+	RPC_BAD_GATEWAY				= 502;
+	RPC_SERVICE_UNAVAILABLE			= 503;
+	RPC_GATEWAY_TIMEOUT			= 504;
+	RPC_SERVICE_VERSION_NOT_SUPPORTED	= 505;
+	RPC_VARIANT_ALSO_NEGOTIATES 		= 506;	//	(RFC 2295)
+	RPC_INSUFFICIENT_STORAGE		= 507;	//	(WebDAV; RFC 4918)
+	RPC_LOOP_DETECTED 			= 508;	//	(WebDAV; RFC 5842)
+	RPC_NOT_EXTENDED			= 510;	//	(RFC 2774)
+	RPC_NETWORK_AUTHENTICATION_REQUIRED	= 511;	//	(RFC 6585)
+}
+
+
+enum EnumCommonStatus
+{
+	COMMON_STATUS_UNSET	= 0;
+	OKAY			= 1;
+	ARCHIVED		= 2;
+	DELETED			= 3;
+}
+
+enum EnumCommonResult
+{
+	COMMON_RESULT_UNSET	= 0;
+	RESULT_SUCCESSFUL	= 1;
+	RESULT_FAILED		= 2;
+	RESULT_ACCEPTED		= 3;
+	RESULT_DENIED		= 4;
+}
+
+enum EnumUserType
+{
+	USER_TYPE_UNSET		= 0;
+}
+
+enum EnumGender
+{
+	GENDER_UNSET		= 0;
+	MALE			= 1;
+	FEMALE			= 2;
+}
+
+enum EnumRegion
+{
+	REGION_UNSET			= 0;
+	REGION_CODE_CN			= 86;	//	CN
+}
+
+
+
+
+
+
+
+message CommonResponse
+{
+	string version		=  1;		//	service version number
+	EnumRpcCode code	=  2;		//	int format error code
+	string error		=  3;		//	string format error code
+	string message		=  4;		//	error message
+	string track_id		=  5;		//	track id
+	string data		=  6;		//	customized data
+	uint32 page_no		= 30;		//	page number
+	uint32 page_size	= 31;		//	page size
+}
