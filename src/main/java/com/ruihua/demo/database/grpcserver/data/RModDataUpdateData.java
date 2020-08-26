@@ -1,9 +1,11 @@
 package com.ruihua.demo.database.grpcserver.data;
 
+import com.ruihua.demo.database.entities.redis.RedisToken;
 import com.ruihua.demo.database.grpcserver.helpers.HelloUtils;
 import com.ruihua.demo.database.model.rest.RestResponse;
 import com.ruihua.demo.database.model.rest.company.RestPostCompanyForm;
 import com.ruihua.demo.database.model.rest.company.RestPostCompanyResponse;
+import com.ruihua.demo.database.repositories.redis.RedisTokenRepository;
 import com.ruihua.demo.database.services.RepoServices.CompanyRepoService;
 import io.grpc.stub.StreamObserver;
 import org.slf4j.Logger;
@@ -15,6 +17,8 @@ import ruihua.demo.database.dataService.UpdateDataResponse;
 import ruihua.demo.database.common.CommonResponse;
 import ruihua.demo.database.common.EnumRpcCode;
 
+import java.time.Instant;
+
 
 @Component
 public class RModDataUpdateData
@@ -23,6 +27,10 @@ public class RModDataUpdateData
 
 	@Autowired
 	CompanyRepoService companyRepoService;
+
+	@Autowired
+	RedisTokenRepository redisTokenRepository;
+
 
 
 	public void updateData( UpdateDataRequest request, StreamObserver<UpdateDataResponse> response )
@@ -37,6 +45,13 @@ public class RModDataUpdateData
 
 			RestResponse<RestPostCompanyResponse> createResponse =
 				companyRepoService.createCompany( restPostCompanyForm );
+
+			//
+			//	save to redis
+			//
+			long lnExpire = Instant.now().getEpochSecond() + 7776000;
+			RedisToken objNewToken = new RedisToken( createResponse.getBody().getMid(), "token-string", lnExpire );
+			redisTokenRepository.save( objNewToken );
 
 			//
 			//	response
