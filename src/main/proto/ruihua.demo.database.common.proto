@@ -114,7 +114,7 @@ message CommonResponse
 	EnumRpcCode code	=  2;		//	int format error code
 	string error		=  3;		//	string format error code
 	string message		=  4;		//	error message
-	string track_id		=  5;		//	track id
+	string trace_id		=  5;		//	trace id
 	string data		=  6;		//	customized data
 	uint32 page_no		= 30;		//	page number
 	uint32 page_size	= 31;		//	page size

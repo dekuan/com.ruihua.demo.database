@@ -8,6 +8,7 @@ import com.ruihua.demo.database.model.rest.company.RestPostCompanyResponse;
 import com.ruihua.demo.database.repositories.redis.RedisTokenRepository;
 import com.ruihua.demo.database.services.RepoServices.CompanyRepoService;
 import io.grpc.stub.StreamObserver;
+import org.apache.skywalking.apm.toolkit.trace.TraceContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,8 +57,10 @@ public class RModDataUpdateData
 			//
 			//	response
 			//
+			//
 			UpdateDataResponse oRes = UpdateDataResponse.newBuilder()
 				.setHeader( CommonResponse.newBuilder()
+					.setTraceId( TraceContext.traceId() )
 					.setCode( EnumRpcCode.RPC_SUCCESSFUL )
 					.build() )
 				.setMid( createResponse.getBody().getMid() )
